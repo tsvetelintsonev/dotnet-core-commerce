@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  commerce.website:
+    image: commerce.website:commerce.website
+    container_name: commerce.website-container
+    build:
+      context: ./
+      dockerfile: ./DockerFile
+    ports: 
+      - 8000:8000
+    volumes:
+      - ./:/app

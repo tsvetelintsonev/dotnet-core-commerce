@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Commerce.Core.Catalog\Commerce.Core.Catalog.csproj" />
+    <ProjectReference Include="..\Commerce.Core.Orders\Commerce.Core.Orders.csproj" />
+    <ProjectReference Include="..\Commerce.Core.Api\Commerce.Core.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0-rc1-final" />
+  </ItemGroup>
+
+</Project>
