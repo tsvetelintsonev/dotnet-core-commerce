@@ -2,10 +2,17 @@ FROM microsoft/dotnet:2.1-sdk
 
 WORKDIR /src
 
+COPY ["Commerce.Website/Commerce.Website.csproj", "Commerce.Website/"]
+COPY ["Commerce.Core/Commerce.Core.Api/Commerce.Core.Api.csproj", "Commerce.Core/Commerce.Core.Api/"]
+COPY ["Commerce.Core/Commerce.Core.Catalog/Commerce.Core.Catalog.csproj", "Commerce.Core/Commerce.Core.Catalog/"]
+COPY ["Commerce.Core/Commerce.Core.Orders/Commerce.Core.Orders.csproj", "Commerce.Core/Commerce.Core.Orders/"]
+COPY ["Commerce.Core/Commerce.Core.Shop/Commerce.Core.Shop.csproj", "Commerce.Core/Commerce.Core.Shop/"]
+
 COPY ./ ./
 
-WORKDIR /app
+WORKDIR /src/Commerce.Website/
+RUN dotnet restore
 
 ENV DOTNET_USE_POLLING_FILE_WATCHER 1
 
-ENTRYPOINT dotnet watch run --urls=http://+:8000
+ENTRYPOINT dotnet watch run --urls=http://*:8000

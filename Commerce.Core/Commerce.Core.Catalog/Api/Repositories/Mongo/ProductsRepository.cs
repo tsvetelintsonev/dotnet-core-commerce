@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Commerce.Core.Catalog.Api.Models;
 using MongoDB.Driver;
-using SuhMapi.Core.Api.Repositories.Mongo;
+using Commerce.Core.Api.Repositories.Mongo;
 
 namespace Commerce.Core.Catalog.Api.Repositories.Mongo
 {

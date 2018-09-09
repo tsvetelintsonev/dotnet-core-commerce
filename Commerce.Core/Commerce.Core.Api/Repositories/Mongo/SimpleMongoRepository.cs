@@ -5,7 +5,7 @@ using Commerce.Core.Api.Repositories;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace SuhMapi.Core.Api.Repositories.Mongo 
+namespace Commerce.Core.Api.Repositories.Mongo 
 {
 
     public abstract class SimpleMongoRepository<TModel>: ISimpleRepository<TModel> 
@@ -26,7 +26,7 @@ namespace SuhMapi.Core.Api.Repositories.Mongo
         public async Task<TModel> GetByIdAsync(string id)
         {
             return await _database.GetCollection<TModel>(CollectionName).Find(
-                Builders<TModel>.Filter.Eq("_id", id)
+                Builders<TModel>.Filter.Eq("_id", new Guid(id))
             ).SingleAsync();
         }
 
@@ -37,17 +37,10 @@ namespace SuhMapi.Core.Api.Repositories.Mongo
             ).SingleAsync();
         }
 
-        public async Task DeleteAsync(string id)
-        {
-            await _database.GetCollection<TModel>(CollectionName).DeleteOneAsync(
-                Builders<TModel>.Filter.Eq("_id", id)
-            );
-        }
-
         public async Task DeleteAsync(Guid id)
         {
             await _database.GetCollection<TModel>(CollectionName).DeleteOneAsync(
-                Builders<TModel>.Filter.Eq("_id", id)
+                Builders<TModel>.Filter.Eq("Id", id)
             );
         }
 

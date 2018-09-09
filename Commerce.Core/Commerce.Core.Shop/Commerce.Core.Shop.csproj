@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="3.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0-rc1-final" />
   </ItemGroup>
 

@@ -10,7 +10,6 @@ namespace Commerce.Core.Api.Repositories
         Task<TModel> GetByIdAsync(string id);
 
         Task<TModel> GetByIdAsync(Guid id);
-        Task DeleteAsync(string id);
         Task DeleteAsync(Guid id);
         Task<IEnumerable<TModel>> GetAllAsync();
     }

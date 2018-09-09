@@ -1,0 +1,25 @@
+version: '2.1'
+
+services:
+  commerce.website:
+    image: commerce.website:commerce.website
+    container_name: commerce.website-container
+    build:
+      context: ./
+      dockerfile: ./Commerce.Website/DockerFile
+    ports: 
+      - 8000:8000
+    volumes:
+      - ./:/src
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:4.1.2-bionic
+    restart: always
+    volumes:
+      - ../data:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8001:8081

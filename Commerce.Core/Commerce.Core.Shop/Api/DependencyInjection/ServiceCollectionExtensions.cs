@@ -10,7 +10,7 @@ using Commerce.Core.Orders.Api.Services;
 using Commerce.Core.Shop.Api;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-using SuhMapi.Core.Api.Repositories.Mongo;
+using Commerce.Core.Api.Repositories.Mongo;
 
 namespace Commerce.Core.Shop.DependencyInjection
 {
@@ -20,12 +20,11 @@ namespace Commerce.Core.Shop.DependencyInjection
             // Repositories
             services
                 .AddTransient<IOrdersRepository, OrdersRepository>()
-                .AddTransient<IProductsRepository, ProductsRepository>()
-                .AddTransient<IProductCatalog, ProductCatalog>();
+                .AddTransient<IProductsRepository, ProductsRepository>();
 
             // Services
             services.AddTransient<IOrdersService, OrdersService>();
-            services.AddTransient<IProductsService, ProductsService>();
+            services.AddTransient<IProductsCatalogService, ProductsCatalogService>();
 
             // The Shop 
             services.AddScoped<IShop, Api.Shop>();

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Commerce.Website.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="row">
+    <form id="form" class="horizontal" style="margin-top:60px;" action="/orders" method="POST">
+    @foreach (var product in Model)
+    {
+        <div class="form-group row">
+            <label class="col-sm-2 control-label">@product.Name - @product.Price.Amount DKK</label>
+            <div class="col-md-1 product" data-product-id=@(product.Id)>
+                <input type="number" class="qty" class="form-control" min="0" placeholder="Qty">
+            </div>
+        </div>
+    }
+    <input type="button" id="submit" class="btn btn-primary" value="Purchase" />
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+        $('#submit').on('click', function(event) {
+            event.preventDefault();
+            var form = $('#form');
+            var orderLines = [];
+            var products = $('.product');
+            products.each(function(i, item) {
+                orderLines.push({ProductId: $(item).data('product-id'), Quantity: $(item).children().first().val()});
+            });
+            
+            $.ajax(
+                {
+                    method: form.attr('method'),
+                    contentType: 'application/json',
+                    url: form.attr('action'),
+                    data: JSON.stringify({OrderLines: orderLines}),
+                    success: function(data) {
+                        console.log(data);
+                        window.location.href = 'orders/receipt/' + data;
+                    },
+                    error: function() {}
+                }
+            );
+        });
+    });
+    </script>
+}

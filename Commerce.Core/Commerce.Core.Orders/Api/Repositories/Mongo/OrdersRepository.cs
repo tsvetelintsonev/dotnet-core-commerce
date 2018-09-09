@@ -1,6 +1,6 @@
 using Commerce.Core.Orders.Api.Models;
 using MongoDB.Driver;
-using SuhMapi.Core.Api.Repositories.Mongo;
+using Commerce.Core.Api.Repositories.Mongo;
 
 namespace Commerce.Core.Orders.Api.Repositories.Mongo
 {
